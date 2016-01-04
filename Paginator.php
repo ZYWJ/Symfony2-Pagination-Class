@@ -56,7 +56,7 @@ class Paginator {
         //set total items count from controller
         $this->itemsCount = $itemsCount;
         if ($currentPage >= $itemsCount / $limit) {
-            $currentPage = $itemsCount / $limit - 1;
+            $currentPage = $itemsCount / $limit;
         }
         $this->currentPage = $currentPage;
         $this->limit = $limit;
