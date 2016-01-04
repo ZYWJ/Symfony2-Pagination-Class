@@ -20,6 +20,8 @@
                 ...
             {% endif %}
         {% endfor %}
-        <li> <a class="next" href="{{ path('_items', {  'offset': paginator.currentpage+1 }) }}">Next</a>
+        {% if paginator.currentPage + 1 <= paginator.numpages %}
+            <li> <a class="next" href="{{ path('_items', {  'offset': paginator.currentpage+1 }) }}">Next</a>
+        {% endif %}
     </ul>
 </div>
