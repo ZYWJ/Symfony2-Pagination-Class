@@ -1,18 +1,18 @@
 <div class="paginator">
     <ul>
         {% if paginator.currentpage != 1 %}
-            <li> <a class="previous" href="{{ path('_items', {  'offset': paginator.currentpage-1 }) }}">Previous</a>
+            <span> <a class="previous" href="{{ path(app.request.attributes.get('_route'), {  'offset': paginator.currentpage-1 }) }}">上一页</a></span>
         {% endif %}
-        {% for i in 1..paginator.numpages%}
+        {% for i in 1..paginator.numpages %}
             {% if paginator.range.0 > 2 and i == paginator.range.0 %}
                   ...
             {% endif %}
 
             {%  if(i==1 or i==paginator.numpages or i in paginator.range) %}
                 {% if i==paginator.currentpage %}
-                    <li><a class="active" href="{{ path('_items', {  'offset': i })}}">{{i}}</a></li>
+                    <span><a class="active" href="{{ path(app.request.attributes.get('_route'), {  'offset': i })}}">{{i}}</a></span>
                 {% else %}
-                <li><a href="{{ path('_items', {  'offset': i }) }}"> {{i}}</a></li>
+                <span><a href="{{ path(app.request.attributes.get('_route'), {  'offset': i }) }}"> {{i}}</a></span>
                 {% endif %}
             {% endif %}
 
@@ -20,6 +20,10 @@
                 ...
             {% endif %}
         {% endfor %}
-        <li> <a class="next" href="{{ path('_items', {  'offset': paginator.currentpage+1 }) }}">Next</a>
+        {% if paginator.currentpage + 1 <= paginator.numpages %}
+            <span> <a class="next" href="{{ path(app.request.attributes.get('_route'), {  'offset': paginator.currentpage+1 }) }}">下一页</a></span>
+        {% endif %}
     </ul>
+</div>
+
 </div>
